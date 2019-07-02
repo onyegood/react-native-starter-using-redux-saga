@@ -7,7 +7,7 @@ import CardSection from '../../component/common/cards/CardSection';
 import Button from '../../component/forms/elements/Button';
 import { userSignupRequest, loginEntries } from '../../redux/actions';
 import SignupFormInput from '../../component/forms/auth/SignupFormInput';
-class SigninScene extends Component {
+class SignupScene extends Component {
 
   onButtonPress = () => {
     const { email, password, firstName, middleName, lastName, gender, phone, role } = this.props;
@@ -44,4 +44,4 @@ const mapStateToProps = (state) => {
   return { email, password, firstName, middleName, lastName, gender, phone, role };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SigninScene);
+export default connect(mapStateToProps, mapDispatchToProps)(SignupScene);
