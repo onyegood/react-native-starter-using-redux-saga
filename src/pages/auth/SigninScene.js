@@ -8,7 +8,8 @@ import Input from '../../component/forms/elements/Input';
 import Button from '../../component/forms/elements/Button';
 import { userLoginRequest, loginEntries } from '../../redux/actions';
 import LoginFormInput from '../../component/forms/auth/LoginFormInput';
-class SigninScene extends Component {
+
+export class SigninScene extends Component {
 
   onButtonPress = () => {
     const { email, password } = this.props;

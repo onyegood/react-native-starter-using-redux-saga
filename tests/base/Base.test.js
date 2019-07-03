@@ -1,9 +1,9 @@
 import 'react-native';
 import React from 'react';
-import { shallow } from 'enzyme';
+import { baseUrl } from '../../src/base';
 
-describe('App base url', () => {
-  it('should be a link', () => {
-
+describe('App API Base URL', () => {
+  it('should be localhost link', () => {
+    expect(baseUrl).toBe('http://localhost:5000/api/v1/');
   });
 });
