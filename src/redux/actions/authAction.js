@@ -53,19 +53,16 @@ export const userLoginFailed = (payload) => ({
     payload
 });
 
-export const userLogoutRequest = (payload) => ({
-    type: USER_LOGOUT_REQUEST,
-    payload
+export const userLogoutRequest = () => ({
+    type: USER_LOGOUT_REQUEST
 });
 
-export const userLogoutSuccess = (payload) => ({
-    type: USER_LOGOUT_SUCCESS,
-    payload
+export const userLogoutSuccess = () => ({
+    type: USER_LOGOUT_SUCCESS
 });
 
-export const userLogoutFailed = (payload) => ({
-    type: USER_LOGOUT_FAILD,
-    payload
+export const userLogoutFailed = () => ({
+    type: USER_LOGOUT_FAILD
 });
 
 export const forgotPasswordRequest = (payload) => ({

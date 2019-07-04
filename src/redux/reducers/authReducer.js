@@ -26,8 +26,8 @@ const INIT_STATE = {
     gender: '',
     phone: '',
     role: '5c92271643a4bf0ff09e8266',
-    email: 'goodnews@softcom.ng',
-    password: 'password',
+    email: '',
+    password: '',
     confirmPassword: '',
     platform: Platform.OS,
     passwordToken: ''
