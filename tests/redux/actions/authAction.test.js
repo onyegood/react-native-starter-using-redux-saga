@@ -1,15 +1,15 @@
 import 'react-native';
 import React from 'react';
-import { shallow } from 'enzyme';
-import { userLoginRequest, userLoginFailed, userLogoutSuccess, userLoginSuccess, fetchCurrentUserRequest, fetchCurrentUserSuccess, fetchCurrentUserFailed, forgotPasswordRequest, forgotPasswordSuccess, forgotPasswordFailed, resetPasswordRequest, resetPasswordSuccess, resetPasswordFailed, validateOTPRequest, validateOTPSuccess, validateOTPFailed, loginEntries } from '../../../src/redux/actions';
-import { USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILD, FETCH_CURRENT_USER_REQUEST, FETCH_CURRENT_USER_SUCCESS, FETCH_CURRENT_USER_FAILD, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_FAILD, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILD, VALIDATE_OTP_REQUEST, VALIDATE_OTP_SUCCESS, VALIDATE_OTP_FAILD, LOGIN_INPUTS } from '../../../src/redux/types/authType';
+import { userLoginRequest, userLoginFailed, userLogoutSuccess, userLoginSuccess, fetchCurrentUserRequest, fetchCurrentUserSuccess, fetchCurrentUserFailed, forgotPasswordRequest, forgotPasswordSuccess, forgotPasswordFailed, resetPasswordRequest, resetPasswordSuccess, resetPasswordFailed, validateOTPRequest, validateOTPSuccess, validateOTPFailed, loginEntries, userSignupRequest, userSignupSuccess, userSignupFailed, userLogoutRequest, userLogoutFailed } from '../../../src/redux/actions';
+import { USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILD, FETCH_CURRENT_USER_REQUEST, FETCH_CURRENT_USER_SUCCESS, FETCH_CURRENT_USER_FAILD, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_FAILD, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILD, VALIDATE_OTP_REQUEST, VALIDATE_OTP_SUCCESS, VALIDATE_OTP_FAILD, LOGIN_INPUTS, USER_SIGNUP_REQUEST, USER_SIGNUP_SUCCESS, USER_SIGNUP_FAILD, USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS, USER_LOGOUT_FAILD } from '../../../src/redux/types/authType';
+import { users } from '../../data';
 
 let user, error, OTP, resetPassword
 
 beforeEach(() => {
   user = {
-    email: 'onyegood@yahoo.com',
-    password: 'password'
+    email: users[0].email,
+    password: users[0].password
   },
     error = {
       error: 'OOps!, some thing went wrong!'
@@ -24,35 +24,33 @@ beforeEach(() => {
 
 describe('Auth user input', () => {
   it('should accept user input to update reducer state', () => {
-    const wrapper = loginEntries({ prop: 'email', value: 'onyegood@yahoo.com' });
+    const wrapper = loginEntries({ prop: 'email', value: user.email });
     expect(wrapper).toEqual({
       type: LOGIN_INPUTS,
-      payload: { prop: 'email', value: 'onyegood@yahoo.com' }
+      payload: { prop: 'email', value: 'john@gmail.com' }
     });
   });
 });
 
 describe('Auth Action', () => {
-  describe('User login request', () => {
-    it('should log start login process', () => {
+
+  describe('Login in user', () => {
+    it('should call userLoginRequest method with email and password', () => {
       const wrapper = userLoginRequest(user);
       expect(wrapper).toEqual({
         type: USER_LOGIN_REQUEST,
         payload: user
       })
     });
-  });
-  describe('User login success', () => {
-    it('should log valid user in', () => {
+    it('should call userLoginSuccess method and log valid user in', () => {
       const wrapper = userLoginSuccess(user);
       expect(wrapper).toEqual({
         type: USER_LOGIN_SUCCESS,
         payload: user
       })
     });
-  });
-  describe('User login faild', () => {
-    it('should return error message', () => {
+
+    it('should userLoginFailed mathod and return error message', () => {
       const wrapper = userLoginFailed(error);
       expect(wrapper).toEqual({
         type: USER_LOGIN_FAILD,
@@ -165,7 +163,54 @@ describe('Auth Action', () => {
     });
   });
 
+  describe('New user signup with complete data', () => {
+    it('should call userSignupRequest method with user data', () => {
+      const wrapper = userSignupRequest(users[0]);
+      expect(wrapper).toEqual({
+        type: USER_SIGNUP_REQUEST,
+        payload: users[0]
+      });
+    });
 
+    it('should call userSignupSuccess method with create new user and return success', () => {
+      const wrapper = userSignupSuccess(users[0]);
+      expect(wrapper).toEqual({
+        type: USER_SIGNUP_SUCCESS,
+        payload: users[0]
+      });
+    });
 
+    it('should call userSignupFailed method and return error', () => {
+      const wrapper = userSignupFailed(error);
+      expect(wrapper).toEqual({
+        type: USER_SIGNUP_FAILD,
+        payload: error
+      });
+    });
+
+  });
+
+  describe('Logout user', () => {
+    it('should call userLogoutRequest method', () => {
+      const wrapper = userLogoutRequest();
+      expect(wrapper).toEqual({
+        type: USER_LOGOUT_REQUEST
+      });
+    });
+
+    it('should call userLogoutSuccess method set auth to null', () => {
+      const wrapper = userLogoutSuccess();
+      expect(wrapper).toEqual({
+        type: USER_LOGOUT_SUCCESS
+      });
+    });
+
+    it('should call userLogoutFailed method with error response', () => {
+      const wrapper = userLogoutFailed();
+      expect(wrapper).toEqual({
+        type: USER_LOGOUT_FAILD
+      });
+    });
+  });
 });
 
