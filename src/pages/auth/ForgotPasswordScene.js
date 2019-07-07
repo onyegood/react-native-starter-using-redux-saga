@@ -6,7 +6,7 @@ import Card from '../../component/common/cards/Card';
 import CardSection from '../../component/common/cards/CardSection';
 import Input from '../../component/forms/elements/Input';
 import Button from '../../component/forms/elements/Button';
-import { forgotPasswordRequest, loginEntries } from '../../redux/actions';
+import { forgotPasswordRequest, userEntries } from '../../redux/actions';
 
 class ForgotPasswordScene extends Component {
 
@@ -25,7 +25,7 @@ class ForgotPasswordScene extends Component {
           <Input
             label="Email"
             placeholder="email@domain.com"
-            onChangeText={value => this.props.loginEntries({ prop: 'email', value })}
+            onChangeText={value => this.props.userEntries({ prop: 'email', value })}
             value={email}
             autoCapitalize='none'
           />
@@ -45,11 +45,11 @@ class ForgotPasswordScene extends Component {
 
 const mapDispatchToProps = {
   forgotPasswordRequest,
-  loginEntries
+  userEntries
 };
 
 const mapStateToProps = (state) => {
-  const { email, platform } = state.auth;
+  const { email, platform } = state.users;
   return {
     email,
     platform

@@ -6,7 +6,7 @@ import Card from '../../component/common/cards/Card';
 import CardSection from '../../component/common/cards/CardSection';
 import Input from '../../component/forms/elements/Input';
 import Button from '../../component/forms/elements/Button';
-import { resetPasswordRequest, loginEntries } from '../../redux/actions';
+import { resetPasswordRequest, userEntries } from '../../redux/actions';
 import { AsyncStorage } from 'react-native';
 
 class ResetPasswordScene extends Component {
@@ -46,7 +46,7 @@ class ResetPasswordScene extends Component {
             secureTextEntry={true}
             label="New Password"
             placeholder="Password"
-            onChangeText={value => this.props.loginEntries({ prop: 'password', value })}
+            onChangeText={value => this.props.userEntries({ prop: 'password', value })}
             value={password}
             autoCapitalize='none'
           />
@@ -56,7 +56,7 @@ class ResetPasswordScene extends Component {
             secureTextEntry={true}
             label="Confirm Password"
             placeholder="Confirm Password"
-            onChangeText={value => this.props.loginEntries({ prop: 'confirmPassword', value })}
+            onChangeText={value => this.props.userEntries({ prop: 'confirmPassword', value })}
             value={confirmPassword}
             autoCapitalize='none'
           />
@@ -77,11 +77,11 @@ class ResetPasswordScene extends Component {
 
 const mapDispatchToProps = {
   resetPasswordRequest,
-  loginEntries
+  userEntries
 };
 
 const mapStateToProps = (state) => {
-  const { email, password, confirmPassword } = state.auth;
+  const { email, password, confirmPassword } = state.users;
   return {
     email,
     password,

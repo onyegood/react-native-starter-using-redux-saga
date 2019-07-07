@@ -8,28 +8,10 @@ import {
     userLogoutSuccess,
     userLogoutFailed,
     fetchCurrentUserSuccess,
-    fetchCurrentUserFailed,
-    userSignupSuccess,
-    userSignupFailed,
-    forgotPasswordSuccess,
-    forgotPasswordFailed,
-    resetPasswordSuccess,
-    resetPasswordFailed,
-    validateOTPSuccess,
-    validateOTPFailed
+    fetchCurrentUserFailed
 } from "../actions";
 import { baseUrl } from '../../base';
 import setAuthorizationHeader from '../../token/setAuthorizationHeader';
-
-export function* userSignupSaga(action) {
-    try {
-        const response = yield axios.post(`${baseUrl}auth/signup`, action.payload);
-        yield put(userSignupSuccess(response.data.user));
-        Actions.auth();
-    } catch (error) {
-        yield put(userSignupFailed(error.response.message));
-    }
-}
 
 export function* userLoginSaga(action) {
     try {
@@ -51,39 +33,6 @@ export function* fetchCurrentUserSaga(action) {
         yield put(fetchCurrentUserFailed(error.response.message));
     }
 }
-
-export function* forgotPasswordSaga(action) {
-    try {
-        const response = yield axios.post(`${baseUrl}auth/forgot-password`, action.payload);
-        yield put(forgotPasswordSuccess());
-        Actions.validateOTP();
-    } catch (error) {
-        yield put(forgotPasswordFailed(error.response.message));
-    }
-}
-
-export function* validateOTPSaga(action) {
-    try {
-        yield AsyncStorage.setItem('passwordToken', action.payload.passwordToken);
-        const response = yield axios.post(`${baseUrl}auth/validate-otp`, action.payload);
-        yield put(validateOTPSuccess(response.data.userId));
-        yield AsyncStorage.setItem('userId', response.data.userId);
-        Actions.resetPassword();
-    } catch (error) {
-        yield put(validateOTPFailed(error.response.message));
-    }
-}
-
-export function* resetPasswordSaga(action) {
-    try {
-        const response = yield axios.post(`${baseUrl}auth/reset-password`, action.payload);
-        yield put(resetPasswordSuccess());
-        Actions.auth();
-    } catch (error) {
-        yield put(resetPasswordFailed(error.response.message));
-    }
-}
-
 
 export function* userLogoutSaga(action) {
     try {

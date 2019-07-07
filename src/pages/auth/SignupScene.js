@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import Card from '../../component/common/cards/Card';
 import CardSection from '../../component/common/cards/CardSection';
 import Button from '../../component/forms/elements/Button';
-import { userSignupRequest, loginEntries } from '../../redux/actions';
+import { userSignupRequest, userEntries } from '../../redux/actions';
 import SignupFormInput from '../../component/forms/auth/SignupFormInput';
 class SignupScene extends Component {
 
@@ -36,11 +36,11 @@ class SignupScene extends Component {
 
 const mapDispatchToProps = {
   userSignupRequest,
-  loginEntries
+  userEntries
 };
 
 const mapStateToProps = (state) => {
-  const { email, password, firstName, middleName, lastName, gender, phone, role } = state.auth;
+  const { email, password, firstName, middleName, lastName, gender, phone, role } = state.users;
   return { email, password, firstName, middleName, lastName, gender, phone, role };
 };
 

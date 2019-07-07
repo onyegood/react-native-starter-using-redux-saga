@@ -8,7 +8,10 @@ import {
   userLogoutFailed,
   fetchCurrentUserRequest,
   fetchCurrentUserSuccess,
-  fetchCurrentUserFailed,
+  fetchCurrentUserFailed
+} from "./authAction";
+
+import {
   userSignupRequest,
   userSignupSuccess,
   userSignupFailed,
@@ -20,8 +23,9 @@ import {
   resetPasswordFailed,
   validateOTPRequest,
   validateOTPSuccess,
-  validateOTPFailed
-} from "./authAction";
+  validateOTPFailed,
+  userEntries
+} from "./userAction";
 
 export {
   userLoginRequest,
@@ -45,5 +49,6 @@ export {
   resetPasswordFailed,
   validateOTPRequest,
   validateOTPSuccess,
-  validateOTPFailed
+  validateOTPFailed,
+  userEntries
 };
