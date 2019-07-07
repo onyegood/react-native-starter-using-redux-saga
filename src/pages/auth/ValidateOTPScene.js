@@ -6,7 +6,7 @@ import Card from '../../component/common/cards/Card';
 import CardSection from '../../component/common/cards/CardSection';
 import Input from '../../component/forms/elements/Input';
 import Button from '../../component/forms/elements/Button';
-import { validateOTPRequest, loginEntries } from '../../redux/actions';
+import { validateOTPRequest, userEntries } from '../../redux/actions';
 
 class ValidateOTPScene extends Component {
 
@@ -26,7 +26,7 @@ class ValidateOTPScene extends Component {
             secureTextEntry={true}
             label="OTP"
             placeholder="Enter OTP"
-            onChangeText={value => this.props.loginEntries({ prop: 'passwordToken', value })}
+            onChangeText={value => this.props.userEntries({ prop: 'passwordToken', value })}
             value={passwordToken}
             autoCapitalize='none'
           />
@@ -46,11 +46,11 @@ class ValidateOTPScene extends Component {
 
 const mapDispatchToProps = {
   validateOTPRequest,
-  loginEntries
+  userEntries
 };
 
 const mapStateToProps = (state) => {
-  const { passwordToken } = state.auth;
+  const { passwordToken } = state.users;
   return {
     passwordToken
   };

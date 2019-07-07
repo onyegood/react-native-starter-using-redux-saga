@@ -1,5 +1,6 @@
 export const users = [
   {
+    _id: 1,
     email: 'john@gmail.com',
     password: 'password',
     firstName: 'Raymond',
@@ -10,6 +11,7 @@ export const users = [
     role: '5c92271643a4bf0ff09e8266'
   },
   {
+    _id: 2,
     email: 'mark@gmail.com',
     password: 'password',
     firstName: 'Mark',
@@ -20,6 +22,7 @@ export const users = [
     role: '5c92271643a4bf0ff09e8266'
   },
   {
+    _id: 3,
     email: 'paul@gmail.com',
     password: 'password',
     firstName: 'Timiko',
@@ -30,6 +33,7 @@ export const users = [
     role: '5c92271643a4bf0ff09e8266'
   },
   {
+    _id: 4,
     email: 'emmanuel@gmail.com',
     password: 'password',
     firstName: 'Usman',

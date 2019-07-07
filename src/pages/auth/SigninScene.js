@@ -4,7 +4,6 @@ import { Text } from "react-native";
 import { Actions } from 'react-native-router-flux';
 import Card from '../../component/common/cards/Card';
 import CardSection from '../../component/common/cards/CardSection';
-import Input from '../../component/forms/elements/Input';
 import Button from '../../component/forms/elements/Button';
 import { userLoginRequest, loginEntries } from '../../redux/actions';
 import LoginFormInput from '../../component/forms/auth/LoginFormInput';
