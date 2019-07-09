@@ -1,9 +1,8 @@
-import 'react-native';
 import React from 'react';
-const routerFluxMock = () => {
+const RouterFluxMock = () => {
   jest.mock('react-native-router-flux', () => ({
     Actions: jest.fn()
   }));
-}
+};
 
-export default routerFluxMock;
+export default RouterFluxMock;
