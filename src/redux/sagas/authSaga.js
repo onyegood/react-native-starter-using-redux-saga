@@ -1,5 +1,4 @@
-import { put } from "redux-saga/effects";
-import axios from "axios";
+import { put, call } from "redux-saga/effects";
 import { Actions } from "react-native-router-flux";
 import { AsyncStorage } from "react-native";
 import {
@@ -10,15 +9,15 @@ import {
     fetchCurrentUserSuccess,
     fetchCurrentUserFailed
 } from "../actions";
-import { baseUrl } from '../../base';
+import { currentUser, signin } from '../../api/auth';
 import setAuthorizationHeader from '../../token/setAuthorizationHeader';
 
 export function* userLoginSaga(action) {
     try {
-        const response = yield axios.post(`${baseUrl}auth/login`, action.payload);
-        setAuthorizationHeader(response.data.token);
-        yield AsyncStorage.setItem('token', response.data.token);
-        yield put(userLoginSuccess(response.data.user));
+        const data = yield call(signin, action.payload);
+        setAuthorizationHeader(data.token);
+        yield AsyncStorage.setItem('token', data.token);
+        yield put(userLoginSuccess(data.user));
         Actions.main();
     } catch (error) {
         yield put(userLoginFailed(error.response.message));
@@ -27,10 +26,10 @@ export function* userLoginSaga(action) {
 
 export function* fetchCurrentUserSaga(action) {
     try {
-        const response = yield axios.get(`${baseUrl}users/current`);
-        yield put(fetchCurrentUserSuccess(response.data.user));
+        const data = yield call(currentUser);
+        yield put(fetchCurrentUserSuccess(data.user));
     } catch (error) {
-        yield put(fetchCurrentUserFailed(error.response.message));
+        yield put(fetchCurrentUserFailed(error));
     }
 }
 

@@ -1,4 +1,4 @@
-import { put } from "redux-saga/effects";
+import { put, call } from "redux-saga/effects";
 import axios from "axios";
 import { Actions } from "react-native-router-flux";
 import { AsyncStorage } from "react-native";
@@ -13,11 +13,12 @@ import {
   validateOTPFailed
 } from "../actions";
 import { baseUrl } from '../../base';
+import { signup, forgotPassword, resetPassword, otp } from "../../api/user";
 
 export function* userSignupSaga(action) {
   try {
-    const response = yield axios.post(`${baseUrl}auth/signup`, action.payload);
-    yield put(userSignupSuccess(response.data.user));
+    const data = yield call(signup, action.payload);
+    yield put(userSignupSuccess(data.user));
     Actions.auth();
   } catch (error) {
     yield put(userSignupFailed(error.response.message));
@@ -26,7 +27,7 @@ export function* userSignupSaga(action) {
 
 export function* forgotPasswordSaga(action) {
   try {
-    const response = yield axios.post(`${baseUrl}auth/forgot-password`, action.payload);
+    yield call(forgotPassword, action.payload);
     yield put(forgotPasswordSuccess());
     Actions.validateOTP();
   } catch (error) {
@@ -37,9 +38,9 @@ export function* forgotPasswordSaga(action) {
 export function* validateOTPSaga(action) {
   try {
     yield AsyncStorage.setItem('passwordToken', action.payload.passwordToken);
-    const response = yield axios.post(`${baseUrl}auth/validate-otp`, action.payload);
-    yield put(validateOTPSuccess(response.data.userId));
-    yield AsyncStorage.setItem('userId', response.data.userId);
+    const data = yield call(otp, action.payload);
+    yield put(validateOTPSuccess(data.userId));
+    yield AsyncStorage.setItem('userId', data.userId);
     Actions.resetPassword();
   } catch (error) {
     yield put(validateOTPFailed(error.response.message));
@@ -48,7 +49,7 @@ export function* validateOTPSaga(action) {
 
 export function* resetPasswordSaga(action) {
   try {
-    yield axios.post(`${baseUrl}auth/reset-password`, action.payload);
+    yield call(resetPassword, action.payload);
     yield put(resetPasswordSuccess());
     Actions.auth();
   } catch (error) {
