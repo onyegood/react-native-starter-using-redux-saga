@@ -1,5 +1,5 @@
 import { userSignupSaga } from '../../../src/redux/sagas/userSaga';
-import { recordSaga } from './TestUtils';
+import { recordSaga } from './SagaTestConfig';
 import { userSignupFailed, userSignupSuccess } from '../../../src/redux/actions';
 import * as api from '../../../src/api/user';
 jest.mock('react-native-router-flux', () => ({
@@ -12,25 +12,37 @@ describe('userSignupSaga', () => {
     jest.resetAllMocks();
   });
 
-  it('should get profile from API and call success action if authenticated', async () => {
-    const data = {
-      email: 'jj@gmail.com',
-      password: 'password',
-      firstName: 'Raymond',
-      middleName: 'Clackson',
-      lastName: 'Benson',
-      gender: 'Female',
-      phone: '07031111056',
-      role: '5c92271643a4bf0ff09e8266'
-    };
+  it('should be called with userSignupSuccess action creator response', async () => {
 
-    api.signup.mockImplementation(() => data);
+    const payload = {
+      success: true
+    }
+
+    api.signup.mockImplementation(() => payload);
 
     const dispatched = await recordSaga(
-      userSignupSaga
+      userSignupSaga,
+      payload
     );
 
-    expect(api.signup).toHaveBeenCalledWith(1);
-    expect(dispatched).toContainEqual(userSignupSuccess(data));
+    expect(api.signup.mock.calls.length).toBe(1);
+    expect(dispatched).toContainEqual(userSignupSuccess(payload));
+  });
+
+  it('should be called with userSignupFailed action creator response', async () => {
+
+    const payload = {
+      success: true
+    }
+
+    api.signup.mockImplementation(() => payload);
+
+    const dispatched = await recordSaga(
+      userSignupSaga,
+      payload
+    );
+
+    expect(api.signup.mock.calls.length).toBe(1);
+    expect(dispatched).not.toContainEqual(userSignupFailed(payload));
   });
 });

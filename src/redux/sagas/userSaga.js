@@ -18,10 +18,10 @@ import { signup, forgotPassword, resetPassword, otp } from "../../api/user";
 export function* userSignupSaga(action) {
   try {
     const data = yield call(signup, action.payload);
-    yield put(userSignupSuccess(data.user));
+    yield put(userSignupSuccess(data));
     Actions.auth();
   } catch (error) {
-    yield put(userSignupFailed(error.response.message));
+    yield put(userSignupFailed(error));
   }
 }
 
