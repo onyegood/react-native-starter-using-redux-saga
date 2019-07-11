@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1562836550479" clover="3.2.0">
-  <project timestamp="1562836550479" name="All files">
-    <metrics statements="153" coveredstatements="94" conditionals="30" coveredconditionals="20" methods="49" coveredmethods="29" elements="232" coveredelements="143" complexity="0" loc="153" ncloc="153" packages="13" files="19" classes="19"/>
+<coverage generated="1562841579547" clover="3.2.0">
+  <project timestamp="1562841579547" name="All files">
+    <metrics statements="153" coveredstatements="108" conditionals="30" coveredconditionals="20" methods="49" coveredmethods="32" elements="232" coveredelements="160" complexity="0" loc="153" ncloc="153" packages="13" files="19" classes="19"/>
     <package name="src.api">
       <metrics statements="24" coveredstatements="4" conditionals="8" coveredconditionals="0" methods="4" coveredmethods="0"/>
       <file name="user.js" path="/Users/ofoegbugoodnews/projects/react-native-projects/startersaga/src/api/user.js">
@@ -175,31 +175,31 @@
       </file>
     </package>
     <package name="src.redux.sagas">
-      <metrics statements="22" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="1"/>
+      <metrics statements="22" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="userSaga.js" path="/Users/ofoegbugoodnews/projects/react-native-projects/startersaga/src/redux/sagas/userSaga.js">
-        <metrics statements="22" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="1"/>
+        <metrics statements="22" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
         <line num="19" count="2" type="stmt"/>
         <line num="20" count="2" type="stmt"/>
         <line num="21" count="2" type="stmt"/>
         <line num="22" count="2" type="stmt"/>
         <line num="24" count="2" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="41" count="2" type="stmt"/>
+        <line num="42" count="2" type="stmt"/>
         <line num="43" count="0" type="stmt"/>
         <line num="44" count="0" type="stmt"/>
         <line num="46" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
+        <line num="51" count="2" type="stmt"/>
+        <line num="52" count="2" type="stmt"/>
+        <line num="53" count="2" type="stmt"/>
+        <line num="54" count="2" type="stmt"/>
+        <line num="56" count="2" type="stmt"/>
       </file>
     </package>
     <package name="src.redux.types">
@@ -245,10 +245,10 @@
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
       <file name="SagaTestConfig.js" path="/Users/ofoegbugoodnews/projects/react-native-projects/startersaga/tests/redux/sagas/SagaTestConfig.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="8" count="4" type="stmt"/>
-        <line num="13" count="2" type="stmt"/>
+        <line num="4" count="8" type="stmt"/>
+        <line num="6" count="8" type="stmt"/>
+        <line num="8" count="14" type="stmt"/>
+        <line num="13" count="8" type="stmt"/>
       </file>
     </package>
   </project>
