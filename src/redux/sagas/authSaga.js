@@ -20,7 +20,7 @@ export function* userLoginSaga(action) {
         yield put(userLoginSuccess(data.user));
         Actions.main();
     } catch (error) {
-        yield put(userLoginFailed(error.response.message));
+        yield put(userLoginFailed(error.response));
     }
 }
 
