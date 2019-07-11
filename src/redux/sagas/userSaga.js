@@ -12,7 +12,7 @@ import {
   validateOTPSuccess,
   validateOTPFailed
 } from "../actions";
-import { baseUrl } from '../../base';
+
 import { signup, forgotPassword, resetPassword, otp } from "../../api/user";
 
 export function* userSignupSaga(action) {

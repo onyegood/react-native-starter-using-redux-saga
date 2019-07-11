@@ -19,12 +19,23 @@ import * as api from '../../../src/api/user';
 jest.mock('react-native-router-flux', () => ({
   Actions: jest.fn()
 }));
+
+jest.mock('react-native', () => ({
+  AsyncStorage: {
+    setItem: jest.fn(),
+    getItem: jest.fn(),
+    multiSet: jest.fn(),
+    multiGet: jest.fn(),
+    removeItem: jest.fn(),
+    getAllKeys: jest.fn()
+  }
+}));
+
 describe('User Saga', () => {
   api.signup = jest.fn();
   api.forgotPassword = jest.fn();
   api.resetPassword = jest.fn();
   api.otp = jest.fn();
-
 
   beforeEach(() => {
     jest.resetAllMocks();
@@ -32,7 +43,6 @@ describe('User Saga', () => {
 
   describe('userSignupSaga', () => {
     it('should be called with userSignupSuccess action creator', async () => {
-
       const responseData = {
         success: true
       }
@@ -51,7 +61,7 @@ describe('User Saga', () => {
     it('should be called with userSignupFailed action creator', async () => {
 
       const responseData = {
-        success: true
+        error: 'Something went wrong'
       }
 
       api.signup.mockImplementation(() => responseData);
@@ -60,7 +70,7 @@ describe('User Saga', () => {
         userSignupSaga,
         responseData
       );
-
+      // console.log(dispatched);
       expect(api.signup.mock.calls.length).toBe(1);
       expect(dispatched).not.toContainEqual(userSignupFailed(responseData));
     });
@@ -88,7 +98,7 @@ describe('User Saga', () => {
     it('should be called with forgotPasswordFailed action creator', async () => {
 
       const responseData = {
-        success: true
+        error: 'Something went wrong'
       }
 
       api.forgotPassword.mockImplementation(() => responseData);
@@ -100,6 +110,7 @@ describe('User Saga', () => {
 
       expect(api.forgotPassword.mock.calls.length).toBe(1);
       expect(dispatched).not.toContainEqual(forgotPasswordFailed(responseData));
+      // console.log(dispatched)
     });
   });
 
@@ -125,7 +136,7 @@ describe('User Saga', () => {
     it('should be called with resetPasswordFailed action creator', async () => {
 
       const responseData = {
-        success: true
+        error: 'Something went wrong'
       }
 
       api.resetPassword.mockImplementation(() => responseData);
@@ -163,13 +174,8 @@ describe('User Saga', () => {
     });
 
     it('should be called with validateOTPFailed action creator', async () => {
-
       const responseData = {
-        success: true,
-        userId: '455366',
-        payload: {
-          passwordToken: "28818"
-        }
+        error: 'Something went wrong'
       }
 
       api.otp.mockImplementation(() => responseData);
