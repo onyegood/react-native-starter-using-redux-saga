@@ -1,10 +1,10 @@
+import { recordSaga } from './SagaTestConfig';
 import {
   userSignupSaga,
   forgotPasswordSaga,
   validateOTPSaga,
   resetPasswordSaga
 } from '../../../src/redux/sagas/userSaga';
-import { recordSaga } from './SagaTestConfig';
 import {
   userSignupFailed,
   userSignupSuccess,
